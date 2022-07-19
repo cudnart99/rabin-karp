@@ -12,6 +12,8 @@ void search(char pat[], char txt[], int q)
 {
 	int M = strlen(pat);
 	int N = strlen(txt);
+	cout << "do dai chuoi ban dau : " << N <<endl;
+	cout << "do dai chuoi can tim : " << M <<endl << endl;
 	int i, j;
 	int p = 0; // hash value for pattern
 	int t = 0; // hash value for txt
@@ -24,15 +26,15 @@ void search(char pat[], char txt[], int q)
 	// Calculate the hash value of pattern and first
 	// window of text
 	for (i = 0; i < M; i++)
-	{
+	{	
 		p = (d * p + pat[i]) % q;
 		t = (d * t + txt[i]) % q;
-	}
-
+	}  
 	// Slide the pattern over text one by one
 	for (i = 0; i <= N - M; i++)
 	{
-
+    cout << "hash of p[" << i << "] : " << p << endl;
+	cout << "hash of t[" << i << "] : " << t << endl << endl;
 		// Check the hash values of current window of text
 		// and pattern. If the hash values match then only
 		// check for characters one by one
@@ -52,7 +54,7 @@ void search(char pat[], char txt[], int q)
 			// if p == t and pat[0...M-1] = txt[i, i+1, ...i+M-1]
 			
 			if (j == M)
-				cout<<"Pattern found at index "<< i<<endl;
+				cout<<"=> Tim thay chuoi o vi tri "<< i<<endl<<endl;
 		}
 
 		// Calculate hash value for next window of text: Remove
@@ -72,8 +74,10 @@ void search(char pat[], char txt[], int q)
 /* Driver code */
 int main()
 {
-	char txt[] = "tran minh duc dep trai , tran minh duc pro";
-	char pat[] = "duc";
+	char txt[] = "aaab aaac aaad abcd";
+	char pat[] = "aaa";
+	cout << "chuoi ban dau : " << txt << endl;
+	cout << "chuoi can tim : " << pat << endl << endl;
 		
 	//we mod to avoid overflowing of value but we should take as big q as possible to avoid the collison
 	int q = INT_MAX;
